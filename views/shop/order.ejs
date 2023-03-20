@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs') %>
+
+<link rel="stylesheet" href="css/orders.css">
+
+  <main>
+      <% if (orders.length <= 0) { %>
+          <h1 class="empty">No Orders Placed Yet!!</h1>
+      <% } else { %>
+          <ul class="main__ul-orders">
+              <% orders.forEach(order => { %>
+                  <li>
+				            <ul class="main__order-items">
+						          <h1 class="main__ul-id">Order - # <%= order._id %> - <a href="/orders/<%= order._id %>" target="_blank"> Invoice </a> </h1>
+                      <% order.products.forEach(p => { %>
+                        <li>
+                          <h2 class="main__ul-title"> <%= p.product.title %> (<%= p.quantity %>) </h2>
+                        </li>
+                      <% }); %>
+                    </ul>
+                  </li>
+              <% }); %>
+          </ul>
+          <div class="middle">
+            <button type="submit" class="btn"> Checkout </button>
+          </div>
+      <% } %>
+  </main>
+
+<%- include('../includes/end.ejs') %>

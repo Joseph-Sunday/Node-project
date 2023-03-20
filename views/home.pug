@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle} 
+        link(rel="stylesheet", href="/css/home.css")
+    body 
+        header 
+            nav.header__nav 
+                ul.header-nav__ul 
+                    li.header-nav-ul__list
+                        a.active(href="/") Home 
+                    li.header-nav-ul__list
+                        a(href="/add-product") Add Product 
+        
+        main.main
+            h1.main__h1
+            p.main__p My products..
+        if prods.length > 0
+            each product in prods
+                div.center
+                    div.main__card
+                        h1.main-card__h1 #{product.items}
+                        img.main-card__img(src="../images/codmob.jpg", alt="gtav", width="200", height="200")
+                        h2.main-card__h2 $19.99
+                        p.main-card__p An amzing video game with classic and definitive experience
+                        button.main-card__button(type="submit") Add to cart
+        else 
+            h1.main__h1 No Products
+            

@@ -1,0 +1,35 @@
+<%- include('../includes/head.ejs') %>
+
+<main>
+    <% if(prods.length > 0) { %>
+        <h1 class="main__h1">Welcome</h1>
+        <p class="main__p">My products..</p>
+        <div class="center">
+            <% for (let product of prods) { %>
+
+                <div class="center">
+                    <div class="main__card">
+                        <h2 class="main-card__h1"><%= product.title %></h2>
+                        <img src="/<%= product.imageUrl %>" alt="<%= product.title %>" class="main-card__img" width="150" height="150">
+                        <h2 class="main-card__h2">$<%= product.price %></h2>
+                        <p class="main-card__p"><%= product.description %></p>
+                        <div class="flex">
+                            <a href="/products/<%= product._id %>">
+                                <button class="main-card__button" type="submit">Details</button>
+                            </a>
+                            <% if(isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+            <% } %>
+        </div>
+        <%- include('../includes/pagination.ejs', {currentPage: currentPage, hasNextPage: hasNextPage, hasPreviousPage: hasPreviousPage, nextPage: nextPage, previousPage: previousPage, lastPage: lastPage})  %>
+    <% } else { %>
+        <h1>No products found!</h1>
+    <% } %>
+</main>
+
+<%- include('../includes/end.ejs') %>

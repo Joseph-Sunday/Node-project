@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/add-product.css">
+
+<main>
+  <h1 class="main__h1">Welcome</h1>
+    <p class="main__p">input an email</p>
+    <div class="center">
+      <% if(errorMessage) { %>
+       <div class="user-message user-message--error"><%= errorMessage %></div>
+      <% } %>
+      <form action="/reset" method="POST" class="main__form">
+        <label for="email" class="main-form__label">E-mail</label>
+        <input type="text" class="main-form__input" placeholder="(e.g email@email)" name="email" id="email">
+
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button class="main-form__button" type="submit">Reset Password</button>
+      </form>
+    </div>
+</main>
+    
+<%- include('../includes/end.ejs') %>

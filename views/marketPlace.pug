@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        link(rel="stylesheet", href="/css/marketPlace.css")
+    body 
+        header
+            nav.header__nav
+                ul.header-nav__ul
+                    li.header-nav-ul__list
+                        a(href="/") Home
+                    li.header-nav-ul__list
+                        a.active(href="/add-product") Add Product
+
+        main
+            h1.main__h1 Welcome
+            p.main__p Please add your products..
+            div.center
+                form.main__form(action="/message" method="POST")
+                    label.main-form__label(for="product") Products
+                    input.main-form__input(type="text", placeholder="(e.g Book)", name="Products")
+                    button.main-form__button(type="submit") Add product

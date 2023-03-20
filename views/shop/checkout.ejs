@@ -1,0 +1,40 @@
+<%- include('../includes/head.ejs') %>
+  <link rel="stylesheet" href="/css/cart.css">
+
+  <main>
+
+    <% if (products.length > 0) { %>
+      <ul class="main__ul">
+        <% products.forEach(p => { %>
+          <li class="cart__items">
+            <h2> <%= p.productId.title %></h2>
+            <!-- NB: with sequelize method, the Quantity: has a p.cartitems before the quantity -->
+            <h2>Quantity: <%= p.quantity %></h2> 
+          </li>
+        <% }) %>
+      </ul>
+      <div class="center">
+        <h2>
+          Total: <%= totalSum %>
+        </h2>
+      </div>
+      <div>
+        <button id="order-btn" class="btn">ORDER</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+          var stripe = Stripe('pk_test_51Mf0dxJdPzXGgzn9FMC2fbLDtLtInFiABfsfXm9jpLdFrvFbpzqMqb1C3V31syOhQi9LYRFCRVzYgmQgCVXUuZsj00KILSAqhW');
+          var orderBtn = document.getElementById('order-btn'); 
+          orderBtn.addEventListener('click', function() {
+            stripe.redirectToCheckout({
+              sessionId: '<%= sessionId %>'
+            })
+          })
+        </script>
+      </div>
+    <% } else { %>
+      <h1>Empty</h1>
+    <% } %>
+
+  </main>
+
+<%- include('../includes/end.ejs') %>
